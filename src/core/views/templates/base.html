@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Manager{% endblock %}</title>
+    <link href="{{context}}/css/screen.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+<body>
+
+{% block menu %}
+<div id="usermenu">
+    {% if user %}
+    <div>Welcome {{user.first_name}}</div>
+    {% else %}
+    <div class="menuitem">
+        <a href="{{context}}/register">Register</a>
+    </div>
+    <div class="menuitem">
+        <form action="{{context}}/login" method="POST">
+            <input id="email"
+                   name="email"
+                   placeholder="email"
+                   type="text">
+            <input id="pass"
+                   name="pass"
+                   placeholder="password"
+                   type="password">
+            <input type="submit" value="login">
+            {{anti-forgery|safe}}
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

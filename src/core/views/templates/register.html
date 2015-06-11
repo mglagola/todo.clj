@@ -1,0 +1,30 @@
+{% extends "core/views/templates/base.html" %}
+
+{% block content %}
+<div class="menuitem">
+    <form action="{{context}}/register" method="POST">
+        <input id="firstname"
+               name="firstname"
+               placeholder="first name"
+               type="text">
+        <input id="lastname"
+               name="lastname"
+               placeholder="last name"
+               type="text">
+        <input id="email"
+               name="email"
+               placeholder="email"
+               type="text">
+        <input id="pass1"
+               name="pass1"
+               placeholder="password"
+               type="password">
+        <input id="pass2"
+               name="pass2"
+               placeholder="password"
+               type="password">
+        <input type="submit" value="register">
+        {{anti-forgery|safe}}
+    </form>
+</div>
+{% endblock %}

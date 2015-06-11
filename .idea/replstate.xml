@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ReplState" timestamp="1434051716582">{:repl-history {:ide [], :local [&quot;(stop-server)&quot; &quot;(use 'core.models.todo)&quot; &quot;(create-todo-table)&quot; &quot;(use 'core.repl)&quot; &quot;(start-server)&quot;], :remote []}}</component>
+</project>

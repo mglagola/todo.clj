@@ -1,0 +1,13 @@
+exit
+(def user {:user "blah" :name "mark" :id 12345})
+user
+(defn cool [] "cools")
+(assoc user :name (cool))
+(defn create-user-and-encrypt-pass
+  "Creates a user and also encrypts password"
+  [{pass :password :as user-spec}]
+(str pass ":" user-spec))
+(defn create-user-and-encrypt-pass
+  [{pass :password :as user-spec}]
+(create-user-and-encrypt-pass {:password "hey" :bossmna "fdjaksf
+(create-user-and-encrypt-pass {:password "hey" :bossmna "fdjaksf" :hey 1232})
