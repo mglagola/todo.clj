@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ReplState" timestamp="1434059443117">{:repl-history {:ide [], :local [&quot;(stop-server)&quot; &quot;(use 'core.models.todo)&quot; &quot;(create-todo-table)&quot; &quot;0&quot; &quot;(start-server)&quot; &quot;(use 'core.repl)&quot; &quot;(core.repl/start-server)&quot; &quot;(require '[core.repl :refer [start-server]])&quot;], :remote []}}</component>
+  <component name="ReplState" timestamp="1434064179981">{:repl-history {:ide [], :local [&quot;(use 'core.models.todo)&quot; &quot;(create-todo-table)&quot; &quot;0&quot; &quot;(core.repl/start-server)&quot; &quot;(require '[core.repl :refer [start-server]])&quot; &quot;(stop-server)&quot; &quot;(use 'core.repl)&quot; &quot;(start-server)&quot;], :remote []}}</component>
 </project>

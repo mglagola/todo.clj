@@ -4,33 +4,43 @@
 
 <div class="jumbotron center-block">
     <div class="container">
-        <h1>Welcome</h1>
         {% if user %}
+        <h1>Welcome {{user.first_name}}</h1>
             {% if todos|empty? %}
-            <p>You have no todos! WTF, why are you even here? Make a todo or go outside.</p>
+            <p>You have no todos! WTF, why are you even here? Make a todo.</p>
             {% else %}
             <p>Below are your todos! Get to work.</p>
             {% endif %}
         {% else %}
-        <p>Login or sign up. Create some todos.</p>
+        <h1>Welcome</h1>
+        <p>Login or create an account. Then start checking off your todo list!.</p>
         {% endif %}
         <p><a class="btn btn-default btn-lg" href="https://github.com/mglagola" role="button">View on Github &raquo;</a></p>
     </div>
 </div>
 
 {% if user %}
+<form class="todo-form" action="/todo" method="POST">
+    <h4 class="todo-form-item">Create Todo</h4>
+    <input type="text" placeholder="Title" class="form-control todo-form-item" name="todo-title" id="todo-title">
+    <textarea class="form-control todo-form-item" rows="3" id="todo-description" name="todo-description" placeholder="Description"></textarea>
+    <button type="submit" class="btn btn-primary todo-form-item">Create</button>
+</form>
+
 <div class="row">
-{% for todo in todos %}
+    {% for todo in todos %}
     <div class="col-md-12">
         <h4>{{todo.title}}</h4>
         <p>{{todo.description}}</p>
     </div>
-{% endfor %}
+    {% endfor %}
 </div>
 
 {% else %}
 <div class="form-container">
     <form class="register-form row" role="form" action="{{context}}/register" method="POST">
+        <h1>Create an account</h1>
+        <p>and start creating your todo list.</p>
         <div class="form-group col-md-6 col-sm-6 col-xs-12">
             <label for="firstname">First Name:</label>
             <input type="text" class="form-control" name="firstname" id="firstname">

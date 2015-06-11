@@ -6,15 +6,12 @@
             [noir.util.crypt :as crypt]
             [core.models.user :as user]
             [noir.util.route :refer [restricted]]
-            [core.views.layout :as layout]))
+            [core.views.layout :as layout]
+            [core.routes.home :refer [home]]))
 
 ;;
 ;; Registration methods
 ;;
-
-(defn registration-page [& [user-spec]]
-  (layout/render "register.html"
-                 user-spec))
 
 (defn format-error
   "Formats possible postgresql errors for human readable output"
@@ -58,8 +55,8 @@
         (resp/redirect "/")
         (catch Exception ex
           (vali/rule false [:email (format-error email ex)])
-          (registration-page)))
-      (registration-page user-spec))))
+          (home)))
+      (home))))
 
 
 ;;
@@ -80,14 +77,11 @@
 (defroutes
   auth-routes
 
-  (GET "/register" []
-    (registration-page))
-
   (POST "/register" [firstname lastname email pass1 pass2]
     (handle-registration firstname lastname email pass1 pass2))
 
   (POST "/login" [email pass]
     (handle-login email pass))
 
-  (POST "/logout" []
+  (GET "/logout" []
     (handle-logout)))

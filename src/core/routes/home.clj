@@ -4,8 +4,8 @@
             [core.models.user :as user]
             [noir.session :as sessoin]))
 
-(defn home []
-  (layout/render "home.html" {}))
+(defn home [& [params]]
+  (layout/render "home.html" params))
 
 (defroutes
   home-routes
