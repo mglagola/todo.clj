@@ -2,40 +2,63 @@
 <html>
 <head>
     <title>{% block title %}Manager{% endblock %}</title>
+    <link href="{{context}}/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="{{context}}/css/screen.css" rel="stylesheet" type="text/css" />
-
 
 </head>
 <body>
 
-{% block menu %}
-<div id="usermenu">
-    {% if user %}
-    <div>Welcome {{user.first_name}}</div>
-    {% else %}
-    <div class="menuitem">
-        <a href="{{context}}/register">Register</a>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Todo</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+            {% if user %}
+            <div class="navbar-right">{{user.first_name}}</div>
+
+            {% else %}
+            <div class="navbar-right">
+
+                <form class="navbar-form" action="{{context}}/login" method="POST">
+                    <div class="form-group">
+                        <input name="email" type="text" placeholder="Email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input name="pass" type="password" placeholder="Password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign in</button>
+                    {{anti-forgery|safe}}
+                </form>
+
+            </div>
+            {% endif %}
+        </div><!--/.navbar-collapse -->
     </div>
-    <div class="menuitem">
-        <form action="{{context}}/login" method="POST">
-            <input id="email"
-                   name="email"
-                   placeholder="email"
-                   type="text">
-            <input id="pass"
-                   name="pass"
-                   placeholder="password"
-                   type="password">
-            <input type="submit" value="login">
-            {{anti-forgery|safe}}
-        </form>
-    </div>
-    {% endif %}
-</div>
-{% endblock %}
+</nav>
+
+<div class="container">
 
 {% block content %}
 {% endblock %}
+
+    <hr>
+
+    <footer>
+        <p>&copy; Mark Glagola 2015</p>
+    </footer>
+
+</div> <!-- /container -->
+
+<script src="{{context}}/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="{{context}}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>

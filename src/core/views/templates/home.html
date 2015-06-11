@@ -2,10 +2,59 @@
 
 {% block content %}
 
-{ % if user % }
-    <div
-{ % else % }
+<div class="jumbotron center-block">
+    <div class="container">
+        <h1>Welcome</h1>
+        {% if user %}
+            {% if todos|empty? %}
+            <p>You have no todos! WTF, why are you even here? Make a todo or go outside.</p>
+            {% else %}
+            <p>Below are your todos! Get to work.</p>
+            {% endif %}
+        {% else %}
+        <p>Login or sign up. Create some todos.</p>
+        {% endif %}
+        <p><a class="btn btn-default btn-lg" href="https://github.com/mglagola" role="button">View on Github &raquo;</a></p>
+    </div>
+</div>
 
-{ % endif % }
+{% if user %}
+<div class="row">
+{% for todo in todos %}
+    <div class="col-md-12">
+        <h4>{{todo.title}}</h4>
+        <p>{{todo.description}}</p>
+    </div>
+{% endfor %}
+</div>
+
+{% else %}
+<div class="form-container">
+    <form class="register-form row" role="form" action="{{context}}/register" method="POST">
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+            <label for="firstname">First Name:</label>
+            <input type="text" class="form-control" name="firstname" id="firstname">
+        </div>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+            <label for="lastname">Last Name:</label>
+            <input type="text" class="form-control" name="lastname" id="lastname">
+        </div>
+        <div class="form-group col-md-12">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" name="email" id="email">
+        </div>
+        <div class="form-group col-md-12">
+            <label for="pass1">Password:</label>
+            <input type="password" class="form-control" name="pass1" id="pass1">
+        </div>
+        <div class="form-group col-md-12">
+            <label for="pass2">Confirm Password:</label>
+            <input type="password" class="form-control" name="pass2" id="pass2">
+        </div>
+        <button type="submit" class="btn btn-danger ">Sign up</button>
+        {{anti-forgery|safe}}
+    </form>
+</div>
+{% endif %}
 
 {% endblock %}

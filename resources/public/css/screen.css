@@ -8,3 +8,29 @@ h1 {
     text-align: center;
 }
 
+.register-form {
+    max-width: 700px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.register-form button {
+    min-width: 100px;
+    margin-left: 15px;
+}
+
+.jumbotron {
+    background-color: #fff;
+    max-width: 700px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.jumbotron h1 {
+    text-align: left;
+}
+
+.navbar {
+    border-radius: 0px !important;
+}
+}

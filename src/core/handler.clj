@@ -7,6 +7,7 @@
             [compojure.route :as route]
             [core.routes.home :refer [home-routes]]
             [core.routes.auth :refer [auth-routes]]
+            [selmer.middleware :refer [wrap-error-page]]
             [noir.util.middleware :as noir-middleware]))
 
 (defn init []
