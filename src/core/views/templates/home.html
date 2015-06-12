@@ -8,7 +8,7 @@
             {% if user %}
             <h1>Welcome {{user.first_name}}</h1>
             {% if todos|empty? %}
-            <p>You have no todos! WTF, why are you even here? Make a todo.</p>
+            <p>You have no todos! Make some.</p>
             {% else %}
             <p>Below are your todos! Get to work.</p>
             {% endif %}
@@ -33,6 +33,7 @@
     {{anti-forgery|safe}}
 </form>
 
+{% if todos|not-empty %}
 <div class="todos row">
     <h4>Todos</h4>
     {% for todo in todos %}
@@ -43,6 +44,7 @@
     </div>
     {% endfor %}
 </div>
+{% endif %}
 
 {% else %}
 <div class="form-container">

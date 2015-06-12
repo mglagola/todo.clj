@@ -3,19 +3,20 @@
             [core.models.db :as db]
             [noir.util.crypt :as crypt]))
 
-(defn create-todo-table
+(defn create-todo-table-if-needed
   "Creates the todo table"
   []
-  (sql/db-do-commands
-    db/db-spec
-    (sql/create-table-ddl
-      :todo
-      [:id :serial "PRIMARY KEY"]
-      [:title :varchar "NOT NULL"]
-      [:description :varchar]
-      [:user_id :serial "REFERENCES _user (id)"]
-      [:last_modified :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"]
-      [:created_at :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"])))
+  (when (not (db/table-created? :todo))
+    (sql/db-do-commands
+      db/db-spec
+      (sql/create-table-ddl
+        :todo
+        [:id :serial "PRIMARY KEY"]
+        [:title :varchar "NOT NULL"]
+        [:description :varchar]
+        [:user_id :serial "REFERENCES _user (id)"]
+        [:last_modified :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"]
+        [:created_at :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"]))))
 
 (defn get-todo-by-id
   "Gets a user by their id from the database"

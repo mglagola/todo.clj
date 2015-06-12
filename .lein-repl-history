@@ -30,3 +30,6 @@ bob
 (catch Exception ex
 "Non Integer"))
 (try (Integer/parseInt "321") "Integer" (catch Exception ex "Non Integer"))
+(doc :hey)
+(name :hey)
+(name "fdashjk")

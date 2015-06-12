@@ -7,19 +7,21 @@
 ;; `user` is a keyword in postgresql, thus
 ;; we are using _user
 
-(defn create-user-table
+(defn create-user-table-if-needed
   "Creates the user table"
   []
-  (sql/db-do-commands
-    db/db-spec
-    (sql/create-table-ddl
-      :_user
-      [:id :serial "PRIMARY KEY"]
-      [:email :varchar "UNIQUE NOT NULL"]
-      [:password :varchar]
-      [:first_name :varchar]
-      [:last_name :varchar]
-      [:created_at :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"])))
+  (when (not (db/table-created? :_user))
+    (sql/db-do-commands
+      db/db-spec
+      (sql/create-table-ddl
+        :_user
+        [:id :serial "PRIMARY KEY"]
+        [:email :varchar "UNIQUE NOT NULL"]
+        [:password :varchar]
+        [:first_name :varchar]
+        [:last_name :varchar]
+        [:created_at :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"]))))
+
 
 (defn get-user-by-id
   "Get's a user by their id from the database"

@@ -24,23 +24,5 @@ $(document).ready(function(){
             }
         });
     });
-
-    $(".todo-form-submit").click(function() {
-        var parentElement = $(this).parent();
-        $.ajax({
-            url: "/todo",
-            type: "POST",
-            headers: {"X-CSRF-Token": $("#__anti-forgery-token").val()},
-            data: { title: $("#title").val(), description : $("#description").val() } ,
-            dataType: "json",
-            success: function(result, textStatus, jqXHR) {
-                console.log(result);
-                parentElement.append(result);
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log("Failed to create: " + textStatus);
-            }
-        });
-    });
 });
 
