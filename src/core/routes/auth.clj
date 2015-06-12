@@ -39,6 +39,12 @@
              [:password "Passwords do not match"])
   (not (vali/errors? :firstname :lastname :email :password)))
 
+(defn first-vali-error [fields]
+  (if (empty? fields)
+    nil
+    (if-let [v (vali/get-errors (peek fields))]
+      (first v)
+      (recur (pop fields)))))
 
 (defn handle-registration
   [firstname lastname email pass1 pass2]
@@ -55,7 +61,7 @@
         (catch Exception ex
           (vali/rule false [:email (format-error email ex)])
           (home {:error "A user already exist with that email address"})))
-      (home {:error (first (vali/get-errors :firstname :lastname :email :password))}))))
+      (home {:error (first-vali-error [:firstname :lastname :email :password])}))))
 
 
 ;;

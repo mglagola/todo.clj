@@ -11,3 +11,12 @@ user
   [{pass :password :as user-spec}]
 (create-user-and-encrypt-pass {:password "hey" :bossmna "fdjaksf
 (create-user-and-encrypt-pass {:password "hey" :bossmna "fdjaksf" :hey 1232})
+exit
+(if-let [x true] true false)
+(if-let [x false] true false)
+(if-let [x nil] true false)
+(def test '(1 2 3))
+(def bob '(1 2 3))
+bob
+(peek bob)
+(pop bob)
