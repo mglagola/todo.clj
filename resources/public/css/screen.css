@@ -82,6 +82,10 @@ footer hr {
     margin-right: 0px;
 }
 
+.todo-form {
+    margin-top: 40px;
+}
+
 .todos {
     padding-left: 15px;
     padding-right: 15px;
@@ -105,4 +109,8 @@ footer hr {
     outline: 0;
     border: 0;
     background: none;
+}
+
+.alert {
+    margin-top: 30px;
 }

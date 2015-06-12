@@ -1,6 +1,7 @@
 {% extends "core/views/templates/base.html" %}
 
 {% block header-content %}
+
 <div class="section-color">
     <div class="jumbotron center-block">
         <div class="container">
@@ -28,7 +29,7 @@
     <h4 class="todo-form-item">Create Todo</h4>
     <input type="text" placeholder="Title" class="form-control todo-form-item" name="title" id="title">
     <textarea class="form-control todo-form-item" rows="3" id="description" name="description" placeholder="Description"></textarea>
-    <button type="submit" class="btn btn-primary todo-form-item">Create</button>
+    <button type="submit" class="btn btn-primary todo-form-item todo-form-submit">Create</button>
     {{anti-forgery|safe}}
 </form>
 

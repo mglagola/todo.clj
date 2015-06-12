@@ -11,19 +11,34 @@ $(document).ready(function(){
 
     $(".delete-todo-item").click(function() {
         var parentElement = $(this).parent();
-        console.log(parentElement);
         var todoId = $(this).attr("value");
-        console.log("DELETE " + "todo/" + todoId + "/delete");
         $.ajax({
-            url: "todo/" + todoId + "/delete",
+            url: "/todo/" + todoId + "/delete",
             type: 'DELETE',
             headers: { "X-CSRF-Token": $("#__anti-forgery-token").val() },
             success: function(result, textStatus, jqXHR) {
-                console.log("Complete: " + result);
                 parentElement.remove();
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                console.log("Failed: " + errorThrown);
+                console.log("Failed to delete: " + errorThrown);
+            }
+        });
+    });
+
+    $(".todo-form-submit").click(function() {
+        var parentElement = $(this).parent();
+        $.ajax({
+            url: "/todo",
+            type: "POST",
+            headers: {"X-CSRF-Token": $("#__anti-forgery-token").val()},
+            data: { title: $("#title").val(), description : $("#description").val() } ,
+            dataType: "json",
+            success: function(result, textStatus, jqXHR) {
+                console.log(result);
+                parentElement.append(result);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log("Failed to create: " + textStatus);
             }
         });
     });

@@ -7,10 +7,14 @@
             [core.models.todo :as todo]
             [noir.util.route :refer [restricted]]
             [core.views.layout :as layout]
-            [core.routes.home :refer [home]]))
+            [core.routes.home :refer [home]]
+            [selmer.parser :as parser]))
 
 (defn logged-out? []
   (nil? (session/get :user)))
+
+(defn render-todo-row [todo]
+  (layout/render "todo_row.html" {:todo todo}))
 
 (defn valid-todo?
   "Validates a todo-spec to increase the likelihood of being successfully processed by
@@ -26,7 +30,7 @@
     (if (= (session/get :user) (:user_id (first (todo/get-todo-by-id id))))
       (try
         (todo/delete-todo id)
-        (home {:success "Deleted"})
+        {:success "Deleted"}
         (catch Exception ex
           (home {:error "Something went wrong deleting your todo"})))
       (home {:error "You're not allowed to delete other people's todos!"}))))
@@ -40,8 +44,7 @@
       (if (valid-todo? todo-spec)
         (try
           (todo/create-todo todo-spec)
-          ;(resp/redirect "/")
-          (home {:success (str "Created " title)})
+          (resp/redirect "/")
           (catch Exception ex
             (home {:error "Something went wrong while creating your todo"})))
         (home {:error (first (vali/get-errors :title))})))))
