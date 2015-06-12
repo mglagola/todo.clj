@@ -14,6 +14,7 @@ Another todo app... written in clojure.
 Create a local postgresql database
 ```
 $ cd path/to/todo.clj
+
 $ initdb pg
 $ postgres -D pg
 $ createdb todo
