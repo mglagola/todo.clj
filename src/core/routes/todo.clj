@@ -23,7 +23,7 @@
 (defn handle-todo-deletion [id]
   (if (logged-out?)
     (home {:error "You must be logged in to delete your todos"})
-    (if (= (session/get :user) (:user_id (todo/get-todo-by-id id)))
+    (if (= (session/get :user) (:user_id (first (todo/get-todo-by-id id))))
       (try
         (todo/delete-todo id)
         (home {:success "Deleted"})
@@ -31,7 +31,7 @@
           (home {:error "Something went wrong deleting your todo"})))
       (home {:error "You're not allowed to delete other people's todos!"}))))
 
-(defn handle-todo [title description]
+(defn handle-todo-creation [title description]
   (if (logged-out?)
     (home {:error "You must be logged in to create a todo"})
     (let [todo-spec {:title title
@@ -50,8 +50,11 @@
   todo-routes
 
   (POST "/todo" [title description]
-    (handle-todo title description))
+    (handle-todo-creation title description))
 
-  (context "/todo/:id" [id]
+  (context ["/todo/:id" :id #"[0-9]+"] [id]
     (DELETE "/delete" []
-      (handle-todo-deletion id))))
+      (try
+        (handle-todo-deletion (Integer/parseInt id))
+        (catch Exception ex
+          (home {:error "Not a valid todo"}))))))

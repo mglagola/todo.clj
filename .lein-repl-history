@@ -20,3 +20,13 @@ exit
 bob
 (peek bob)
 (pop bob)
+(read-string "fjdklsa")
+"fdasf")
+"fdasf"
+(Integer/parseInt "532")
+(Integer/parseInt "532fdjsakl")
+(try (Integer/parseInt "532fdjsakl")
+"Integer"
+(catch Exception ex
+"Non Integer"))
+(try (Integer/parseInt "321") "Integer" (catch Exception ex "Non Integer"))

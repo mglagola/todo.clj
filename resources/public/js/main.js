@@ -10,12 +10,20 @@ $(document).ready(function(){
     });
 
     $(".delete-todo-item").click(function() {
+        var parentElement = $(this).parent();
+        console.log(parentElement);
         var todoId = $(this).attr("value");
+        console.log("DELETE " + "todo/" + todoId + "/delete");
         $.ajax({
             url: "todo/" + todoId + "/delete",
             type: 'DELETE',
-            success: function(result) {
-                console.log(result);
+            headers: { "X-CSRF-Token": $("#__anti-forgery-token").val() },
+            success: function(result, textStatus, jqXHR) {
+                console.log("Complete: " + result);
+                parentElement.remove();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log("Failed: " + errorThrown);
             }
         });
     });
