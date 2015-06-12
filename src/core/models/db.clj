@@ -1,7 +1,8 @@
 (ns core.models.db
   (:require [clojure.java.jdbc :as sql]))
 
-(def db-spec "postgresql://localhost:5432/core")
+(def db-spec (or (System/getenv "DATABASE_URL")
+                 "postgresql://localhost:5432/core"))
 
 (defn table-created? [table-name]
   (-> (sql/query db-spec
