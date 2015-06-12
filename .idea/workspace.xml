@@ -4,11 +4,7 @@
     <list default="true" id="3f185165-d507-4995-943a-8bd5a509f567" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.nrepl-port" afterPath="$PROJECT_DIR$/.nrepl-port" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/core/views/templates/home.html" afterPath="$PROJECT_DIR$/src/core/views/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/public/js/main.js" afterPath="$PROJECT_DIR$/resources/public/js/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/replstate.xml" afterPath="$PROJECT_DIR$/.idea/replstate.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/public/css/screen.css" afterPath="$PROJECT_DIR$/resources/public/css/screen.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/core/routes/todo.clj" afterPath="$PROJECT_DIR$/src/core/routes/todo.clj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="todo-clojure.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,8 +28,8 @@
       <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/core/views/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7079646">
-              <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.31029186">
+              <caret line="18" column="69" selection-start-line="18" selection-start-column="63" selection-end-line="18" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -1178,8 +1174,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/core/views/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7079646">
-          <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.31029186">
+          <caret line="18" column="69" selection-start-line="18" selection-start-column="63" selection-end-line="18" selection-end-column="69" />
           <folding />
         </state>
       </provider>
