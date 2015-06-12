@@ -1,5 +1,5 @@
 # Todo
-Another todo app... written in clojure.
+Another todo web app... written in clojure.
 
 
 ## Prerequisites
@@ -39,6 +39,10 @@ The following will deploy to heroku assuming you have the [heroku cli][2] instal
 
 ```
 $ cd path/to/todo.clj
+
+$ lein with-profile production uberjar
+$ git add .
+$ git commit -m 'added project jar file'
 
 $ heroku create YOUR_APP_NAME
 $ heroku addons:create heroku-postgresql:dev -a YOUR_APP_NAME
