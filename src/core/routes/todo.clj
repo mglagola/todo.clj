@@ -20,7 +20,7 @@
 
 (defn handle-todo
   [title description]
-  (if (empty? (session/get :user))
+  (if (nil? (session/get :user))
     (home {:error "You must be logged in to create a todo"})
     (let [todo-spec {:title title
                      :description description
@@ -35,7 +35,7 @@
         (home {:error (first (vali/get-errors :title))})))))
 
 (defroutes
-  todo-route
+  todo-routes
 
   (POST "/todo" [title description]
     (handle-todo title description)))

@@ -6,7 +6,6 @@
             [noir.util.crypt :as crypt]
             [core.models.user :as user]
             [noir.util.route :refer [restricted]]
-            [core.views.layout :as layout]
             [core.routes.home :refer [home]]))
 
 ;;
@@ -55,8 +54,8 @@
         (resp/redirect "/")
         (catch Exception ex
           (vali/rule false [:email (format-error email ex)])
-          (home)))
-      (home))))
+          (home {:error "A user already exist with that email address"})))
+      (home {:error (first (vali/get-errors :firstname :lastname :email :password))}))))
 
 
 ;;

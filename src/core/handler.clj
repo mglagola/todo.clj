@@ -7,6 +7,7 @@
             [compojure.route :as route]
             [core.routes.home :refer [home-routes]]
             [core.routes.auth :refer [auth-routes]]
+            [core.routes.todo :refer [todo-routes]]
             [selmer.middleware :refer [wrap-error-page]]
             [noir.util.middleware :as noir-middleware]))
 
@@ -23,6 +24,7 @@
 (def app
   (noir-middleware/app-handler
     [auth-routes
+     todo-routes
      home-routes
      app-routes]))
 

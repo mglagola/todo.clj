@@ -18,11 +18,18 @@
       [:created_at :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"])))
 
 (defn get-todo-by-id
-  "Get's a user by their id from the database"
+  "Gets a user by their id from the database"
   [id]
   (sql/query
     db/db-spec
     ["select * from todo where id = ?" id]))
+
+(defn get-todos-by-user
+  "Gets all todos by a user"
+  [user-id]
+  (sql/query
+    db/db-spec
+    ["select * from todo where user_id = ?" user-id]))
 
 (defn create-todo
   "Creates a user via a map with the appropriate data corresponding

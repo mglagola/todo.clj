@@ -1,36 +1,42 @@
 {% extends "core/views/templates/base.html" %}
 
-{% block content %}
-
-<div class="jumbotron center-block">
-    <div class="container">
-        {% if user %}
-        <h1>Welcome {{user.first_name}}</h1>
+{% block header-content %}
+<div class="section-color">
+    <div class="jumbotron center-block">
+        <div class="container">
+            {% if user %}
+            <h1>Welcome {{user.first_name}}</h1>
             {% if todos|empty? %}
             <p>You have no todos! WTF, why are you even here? Make a todo.</p>
             {% else %}
             <p>Below are your todos! Get to work.</p>
             {% endif %}
-        {% else %}
-        <h1>Welcome</h1>
-        <p>Login or create an account. Then start checking off your todo list!.</p>
-        {% endif %}
-        <p><a class="btn btn-default btn-lg" href="https://github.com/mglagola" role="button">View on Github &raquo;</a></p>
+            {% else %}
+            <h1>Welcome</h1>
+            <p>Login or create an account. Start checking off your todo list!</p>
+            {% endif %}
+            <p><a class="btn btn-default btn-lg" href="https://github.com/mglagola" role="button">View on Github &raquo;</a></p>
+        </div>
     </div>
 </div>
+{% endblock %}
+
+{% block content %}
 
 {% if user %}
 <form class="todo-form" action="/todo" method="POST">
     <h4 class="todo-form-item">Create Todo</h4>
-    <input type="text" placeholder="Title" class="form-control todo-form-item" name="todo-title" id="todo-title">
-    <textarea class="form-control todo-form-item" rows="3" id="todo-description" name="todo-description" placeholder="Description"></textarea>
+    <input type="text" placeholder="Title" class="form-control todo-form-item" name="title" id="title">
+    <textarea class="form-control todo-form-item" rows="3" id="description" name="description" placeholder="Description"></textarea>
     <button type="submit" class="btn btn-primary todo-form-item">Create</button>
+    {{anti-forgery|safe}}
 </form>
 
-<div class="row">
+<div class="todos row">
+    <h4>Todos</h4>
     {% for todo in todos %}
-    <div class="col-md-12">
-        <h4>{{todo.title}}</h4>
+    <div class="todo-item col-md-6 col-sm-6 col-xs-12">
+        <h5>{{todo.title}}</h5>
         <p>{{todo.description}}</p>
     </div>
     {% endfor %}
@@ -61,7 +67,7 @@
             <label for="pass2">Confirm Password:</label>
             <input type="password" class="form-control" name="pass2" id="pass2">
         </div>
-        <button type="submit" class="btn btn-danger ">Sign up</button>
+        <button type="submit" class="btn btn-success">Sign up</button>
         {{anti-forgery|safe}}
     </form>
 </div>

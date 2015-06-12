@@ -2,10 +2,14 @@
   (:require [compojure.core :refer :all]
             [core.views.layout :as layout]
             [core.models.user :as user]
-            [noir.session :as sessoin]))
+            [core.models.todo :as todo]
+            [noir.session :as session]))
 
 (defn home [& [params]]
-  (layout/render "home.html" params))
+  (if (nil? (session/get :user))
+    (layout/render "home.html" params)
+    (layout/render "home.html" (merge params
+                                      {:todos (todo/get-todos-by-user (session/get :user))}))))
 
 (defroutes
   home-routes
