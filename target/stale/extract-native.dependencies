@@ -1,0 +1,1 @@
+([:dependencies ([org.clojure/clojure "1.6.0"] [compojure/compojure "1.1.6"] [hiccup/hiccup "1.0.5"] [ring-server/ring-server "0.3.1"] [org.clojure/java.jdbc "0.3.7"] [postgresql/postgresql "9.3-1102.jdbc41"] [selmer/selmer "0.8.2"] [lib-noir/lib-noir "0.9.9"])])
