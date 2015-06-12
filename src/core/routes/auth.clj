@@ -56,7 +56,7 @@
     (if (valid-user? user-spec)
       (try
         (user/create-user-and-encrypt-pass (dissoc user-spec :password2))
-        (session/put! :user ((user/get-user-by-email email) :id))
+        (session/put! :user (:id (first (user/get-user-by-email email))))
         (resp/redirect "/")
         (catch Exception ex
           (vali/rule false [:email (format-error email ex)])

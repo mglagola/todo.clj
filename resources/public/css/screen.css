@@ -88,5 +88,20 @@ footer hr {
 }
 
 .todo-item {
-    border
+    height: 80px;
+    padding: 10px;
+}
+
+.todo-item:hover {
+    border-radius: 10px;
+    background-color: #ecf0f1;
+}
+
+.delete-todo-item button {
+    margin-top: 7px;
+    float: right;
+    color: #c0392b;
+    outline: 0;
+    border: 0;
+    background: none;
 }
