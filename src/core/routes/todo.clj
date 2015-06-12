@@ -1,5 +1,5 @@
 (ns core.routes.todo
-  (:require [compojure.core :refer [defroutes GET POST context]]
+  (:require [compojure.core :refer [defroutes GET POST DELETE context]]
             [noir.session :as session]
             [noir.response :as resp]
             [noir.validation :as vali]
@@ -9,6 +9,9 @@
             [core.views.layout :as layout]
             [core.routes.home :refer [home]]))
 
+(defn logged-out? []
+  (nil? (session/get :user)))
+
 (defn valid-todo?
   "Validates a todo-spec to increase the likelihood of being successfully processed by
   the postgresql database"
@@ -17,10 +20,19 @@
              [:title "A title is required for a todo"])
   (not (vali/errors? :title)))
 
+(defn handle-todo-deletion [id]
+  (if (logged-out?)
+    (home {:error "You must be logged in to delete your todos"})
+    (if (= (session/get :user) (:user_id (todo/get-todo-by-id id)))
+      (try
+        (todo/delete-todo id)
+        (home {:success "Deleted"})
+        (catch Exception ex
+          (home {:error "Something went wrong deleting your todo"})))
+      (home {:error "You're not allowed to delete other people's todos!"}))))
 
-(defn handle-todo
-  [title description]
-  (if (nil? (session/get :user))
+(defn handle-todo [title description]
+  (if (logged-out?)
     (home {:error "You must be logged in to create a todo"})
     (let [todo-spec {:title title
                      :description description
@@ -38,4 +50,8 @@
   todo-routes
 
   (POST "/todo" [title description]
-    (handle-todo title description)))
+    (handle-todo title description))
+
+  (context "/todo/:id" [id]
+    (DELETE "/delete" []
+      (handle-todo-deletion id))))

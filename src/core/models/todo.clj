@@ -39,3 +39,9 @@
     db/db-spec
     :todo
     todo-spec))
+
+(defn delete-todo [id]
+  (sql/delete!
+    db/db-spec
+    :todo
+    ["id = ?" id]))

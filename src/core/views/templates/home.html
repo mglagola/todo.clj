@@ -36,10 +36,7 @@
     <h4>Todos</h4>
     {% for todo in todos %}
     <div class="todo-item col-md-6 col-sm-6 col-xs-12">
-        <form class="delete-todo-item" action="/todo/{{todo.id}}/delete" method="POST">
-            <button type="submit" class="glyphicon glyphicon-remove"></button>
-            {{anti-forgery|safe}}
-        </form>
+        <button class="delete-todo-item glyphicon glyphicon-remove" value="{{todo.id}}"></button>
         <h5>{{todo.title}}</h5>
         <p>{{todo.description}}</p>
     </div>

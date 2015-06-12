@@ -9,4 +9,15 @@ $(document).ready(function(){
         $(this).find('.delete-todo-item').hide();
     });
 
+    $(".delete-todo-item").click(function() {
+        var todoId = $(this).attr("value");
+        $.ajax({
+            url: "todo/" + todoId + "/delete",
+            type: 'DELETE',
+            success: function(result) {
+                console.log(result);
+            }
+        });
+    });
 });
+

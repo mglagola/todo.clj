@@ -97,7 +97,7 @@ footer hr {
     background-color: #ecf0f1;
 }
 
-.delete-todo-item button {
+.delete-todo-item {
     margin-top: 7px;
     float: right;
     color: #c0392b;
